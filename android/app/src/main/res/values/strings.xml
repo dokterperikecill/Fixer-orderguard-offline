@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">D\'Fixer OrderGuard</string>
+    <string name="title_activity_main">D\'Fixer OrderGuard</string>
+    <string name="package_name">com.dfixer.orderguard</string>
+    <string name="custom_url_scheme">com.dfixer.orderguard</string>
+</resources>

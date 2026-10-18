@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173d37">
+  <meta name="description" content="Manifest dan bukti serah-terima paket, tersimpan lokal dan siap bekerja offline.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>D'Fixer OrderGuard</title>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="D'Fixer OrderGuard, Ringkasan">
+        <span class="brand-mark" aria-hidden="true">D</span>
+        <span class="brand-copy"><strong>D'Fixer</strong><small>ORDERGUARD</small></span>
+      </a>
+      <div class="workspace-picker"><span class="workspace-dot"></span><span><small>RUANG KERJA LOKAL</small><strong id="workspace-name">Gudang Utama</strong></span><span class="chevron">⌄</span></div>
+      <nav class="primary-nav" aria-label="Navigasi utama">
+        <p class="nav-label">OPERASIONAL</p>
+        <a href="#dashboard" class="nav-link active" data-view="dashboard"><span class="nav-icon">◫</span>Ringkasan</a>
+        <a href="#imports" class="nav-link" data-view="imports"><span class="nav-icon">⇧</span>Impor data <span class="nav-count" id="import-count"></span></a>
+        <a href="#manifests" class="nav-link" data-view="manifests"><span class="nav-icon">▤</span>Manifest <span class="nav-count" id="manifest-count"></span></a>
+        <a href="#scanner" class="nav-link" data-view="scanner"><span class="nav-icon">⌗</span>Pemindaian</a>
+        <a href="#handover" class="nav-link" data-view="handover"><span class="nav-icon">⇄</span>Serah terima</a>
+        <p class="nav-label nav-label-lower">PENGAWASAN</p>
+        <a href="#incidents" class="nav-link" data-view="incidents"><span class="nav-icon">⚑</span>Insiden <span class="nav-count" id="incident-count"></span></a>
+        <a href="#reports" class="nav-link" data-view="reports"><span class="nav-icon">▥</span>Laporan & audit</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="offline-card"><span class="offline-pulse"></span><span><strong id="connection-label">Mode offline siap</strong><small>Perubahan tersimpan di perangkat</small></span></div>
+        <a href="#settings" class="nav-link settings-link" data-view="settings"><span class="nav-icon">⚙</span>Pengaturan & backup</a>
+        <div class="user-chip"><span class="avatar">OP</span><span><strong id="operator-label">Operator lokal</strong><small>Perangkat ini</small></span><button class="icon-button" id="edit-operator" title="Ubah nama operator" aria-label="Ubah nama operator">···</button></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="mobile-menu" aria-label="Buka navigasi">☰</button>
+        <div class="breadcrumbs"><span>OrderGuard</span><span class="crumb-separator">/</span><strong id="page-label">Ringkasan</strong></div>
+        <div class="topbar-actions"><span class="today-label" id="today-label"></span><button class="button button-light button-small" id="sync-now" data-action="sync-now" title="Sinkronkan perubahan lokal" aria-label="Sinkronkan perubahan">↻</button><button class="button button-light button-small" data-action="open-camera" title="Pindai lewat kamera" aria-label="Pindai lewat kamera">⌗</button><button class="button button-dark button-small" id="quick-import"><span>＋</span> Impor paket</button></div>
+      </header>
+      <div id="view-root" class="view-root" tabindex="-1"></div>
+      <footer class="local-footer"><span><i></i> Tersimpan di perangkat ini</span><span id="last-saved">Belum ada perubahan</span></footer>
+    </main>
+  </div>
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+  <input type="file" id="restore-file" accept="application/json,.json" hidden>
+  <script src="node_modules/@e965/xlsx/dist/xlsx.full.min.js" defer></script>
+  <script src="node_modules/@supabase/supabase-js/dist/umd/supabase.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
